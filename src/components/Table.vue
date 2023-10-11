@@ -77,12 +77,12 @@
           </v-form>
 
           <v-card-actions class="justify-end py-4 mx-4">
-            <v-btn text color="red" class="px-4" @click="dialogFilter = false"
+            <v-btn text color="red" class="px-8" @click="dialogFilter = false"
               >Close</v-btn
             >
             <v-btn
               :color="tableDetails.color.primary"
-              class="white--text px-4"
+              class="white--text px-8"
               @click="
                 dialogFilter = false;
                 filterList();

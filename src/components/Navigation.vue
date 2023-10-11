@@ -106,31 +106,31 @@ export default {
       {
         name: "Table",
         route: "table",
-        icon: "mdi-home-circle",
+        icon: "mdi-table-large",
       },
       {
         name: "Charts",
         route: "chart",
-        icon: "mdi-list-box",
+        icon: "mdi-chart-areaspline-variant",
       },
       {
-        name: "Records",
-        route: "chart",
-        icon: "mdi-file",
+        name: "Multistep Form",
+        route: "multistep-form",
+        icon: "mdi-list-box",
       },
     ],
 
     navButtons2: [
-      {
-        name: "Settings",
-        route: "chart",
-        icon: "mdi-cog",
-      },
-      {
-        name: "Messages",
-        route: "chart",
-        icon: "mdi-mail",
-      },
+      // {
+      //   name: "Settings",
+      //   route: "chart",
+      //   icon: "mdi-cog",
+      // },
+      // {
+      //   name: "Messages",
+      //   route: "chart",
+      //   icon: "mdi-mail",
+      // },
     ],
   }),
 

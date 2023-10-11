@@ -31,8 +31,8 @@ export default {
 
 * {
   font-family: "Poppins", sans-serif !important;
-  font-family: "Inter", sans-serif !important; */
-  /* font-family: "Roboto", sans-serif !important;
+  font-family: "Inter", sans-serif !important; 
+  font-family: "Roboto", sans-serif !important;
 } */
 
 #wrapper {
