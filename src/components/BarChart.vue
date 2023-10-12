@@ -5,8 +5,9 @@
     }}</v-card-title>
 
     <v-row dense>
-      <v-col cols="12">
-        <div
+      <v-col cols="12" md="9">
+        <v-container
+          fill-height
           class="container"
           style="border: 1px solid #f0f0f0; border-radius: 5px"
         >
@@ -16,18 +17,19 @@
             :options="chartData.options"
             :key="chartKey"
           />
-        </div>
+        </v-container>
       </v-col>
-      <v-col
-        cols="12"
-        md="6"
-        v-for="(num, i) in 2"
-        :key="i"
-      >
-        <v-card flat outlined>
-          <v-card-title>147</v-card-title>
-          <v-card-subtitle>Title here</v-card-subtitle>
-        </v-card>
+      <v-col cols="12" md="3">
+        <v-row dense>
+          <v-col cols="12" v-for="(num, i) in 2" :key="i">
+            <v-card flat outlined>
+              <v-card-title>147</v-card-title>
+              <v-card-subtitle class="text-overline"
+                >Title here</v-card-subtitle
+              >
+            </v-card>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-card>

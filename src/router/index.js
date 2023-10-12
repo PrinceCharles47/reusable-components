@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ChartView from '../views/ChartView.vue'
 import MultiStepFormView from '../views/MultiStepFormView.vue'
+import TabsView from '../views/TabsView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,16 @@ const routes = [
     path: '/multistep-form',
     name: 'multistep-form',
     component: MultiStepFormView
+  },
+  {
+    path: '/tab',
+    name: 'tab',
+    component: TabsView
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileView
   },
 ]
 

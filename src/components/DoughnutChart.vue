@@ -6,16 +6,21 @@
       <v-col cols="12">
         <div
           class="container"
-          style="border: 1px solid #f0f0f0; border-radius: 5px;"
+          style="border: 1px solid #f0f0f0; border-radius: 5px"
         >
-          <Doughnut :data="chartData" :options="chartOptions" :width="width" :height="height" />
+          <Doughnut
+            :data="chartData"
+            :options="chartOptions"
+            :width="width"
+            :height="height"
+          />
         </div>
       </v-col>
 
-      <v-col cols="12" v-for="(num, i) in 2" :key="i">
+      <v-col cols="6" v-for="(num, i) in 2" :key="i">
         <v-card flat outlined>
           <v-card-title>147</v-card-title>
-          <v-card-subtitle>Title here</v-card-subtitle>
+          <v-card-subtitle class="text-overline">Title here</v-card-subtitle>
         </v-card>
       </v-col>
     </v-row>

@@ -42,7 +42,7 @@
         <v-card>
           <v-toolbar
             flat
-            :color="tableDetails.color.secondary"
+            :color="tableDetails.color.primary"
             class="white--text text-h6 px-4"
             >FILTER ITEMS</v-toolbar
           >
