@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card flat class="px-0" id="container-card">
+    <v-card flat class="pb-4 px-0" id="container-card">
       <v-card-subtitle
         class="text-subtitle-1 font-weight-bold py-2"
         :style="`color: ${color.primary};`"
@@ -10,8 +10,7 @@
       <v-row dense>
         <v-col class="pt-2" cols="12" md="6" v-for="(num, i) in 5" :key="i">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Date of Birth:</p>
-            <p class="text-subtitle-2 font-weight-regular mb-0">July 6, 2001</p>
+            <p class="text-subtitle-2 font-weight-bold mb-0">Date of Birth: <span class="font-weight-regular">July 6, 2001</span></p>
           </v-card-text>
         </v-col>
       </v-row>
@@ -33,7 +32,8 @@ export default {
 
 <style scoped>
 #container-card {
-  border-top: 3px solid #7b40f9;
-  border-radius: 0;
+  /* border-top: 3px solid #7b40f9; */
+  /* border-radius: 0; */
+  background-color: #fcfcfc;
 }
 </style>

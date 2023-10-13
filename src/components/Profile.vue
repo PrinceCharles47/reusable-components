@@ -51,18 +51,13 @@
       </v-card-text> -->
     </v-card>
 
-
-
-
-    
-
     <v-card flat class="px-0 pb-4" outlined>
       <v-card-subtitle
         class="text-subtitle-1 font-weight-bold py-2"
         :style="`color: ${color.primary};`"
         >Basic Information</v-card-subtitle
       >
-      <v-divider class="mb-2"></v-divider>
+      <v-divider class="mb-4"></v-divider>
       <v-row dense>
         <!-- <v-col class="pt-2" cols="12" v-for="(num, i) in 5" :key="i">
           <v-card-text class="py-0">
@@ -72,44 +67,51 @@
         </v-col> -->
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Date of Birth:</p>
-            <p class="text-subtitle-1">July 6, 2001</p>
+            <p class="text-subtitle-2 font-weight-bold">
+              Date of Birth: <span class="text-subtitle-2 font-weight-regular">July 6, 2001</span>
+            </p>
           </v-card-text>
         </v-col>
 
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Age:</p>
-            <p class="text-subtitle-1">22 years old</p>
+            <p class="text-subtitle-2 font-weight-bold">
+              Age: <span class="text-subtitle-2 font-weight-regular">22 years old</span>
+            </p>
           </v-card-text>
         </v-col>
 
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Gender:</p>
-            <p class="text-subtitle-1">Female</p>
+            <p class="text-subtitle-2 font-weight-bold">
+              Gender: <span class="text-subtitle-2 font-weight-regular">Female</span>
+            </p>
           </v-card-text>
         </v-col>
 
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Mobile Number:</p>
-            <p class="text-subtitle-1">09058112554</p>
+            <p class="text-subtitle-2 font-weight-bold">
+              Mobile Number: <span class="text-subtitle-2 font-weight-regular">09058112554</span>
+            </p>
           </v-card-text>
         </v-col>
 
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Email:</p>
-            <p class="text-subtitle-1">cathlynmae@gmail.com</p>
+            <p class="text-subtitle-2 font-weight-bold">
+              Email: <span class="text-subtitle-2 font-weight-regular">cathlynmae@gmail.com</span>
+            </p>
           </v-card-text>
         </v-col>
 
         <v-col cols="12">
           <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Address:</p>
-            <p class="text-subtitle-1">
-              71 Purok 1, Brgy. Sta. Rita, Concepcion, Tarlac
+            <p class="text-subtitle-2 font-weight-bold">
+              Address:
+              <span class="text-subtitle-2 font-weight-regular">
+                71 Purok 1, Brgy. Sta. Rita, Concepcion, Tarlac
+              </span>
             </p>
           </v-card-text>
         </v-col>
