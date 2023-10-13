@@ -21,7 +21,11 @@
     </v-app-bar>
 
     <!-- Contains navigation buttons inside the drawer -->
-    <v-navigation-drawer app v-model="navDrawer" :color="navColor">
+    <v-navigation-drawer
+      app
+      v-model="navDrawer"
+      :color="navColor"
+    >
       <v-list-item class="pa-0">
         <!-- <v-list-item-icon class="mr-2">
           <v-img src="../assets/eclipse.png" width="50"></v-img>
@@ -101,12 +105,13 @@
       width="375"
       right
       app
+      class="pa-4"
       v-model="notificationDrawer"
     >
       <v-card flat>
         <v-card-title
-          class="darken-4 white--text"
-          :style="`background-color: ${accentColor};`"
+          class="darken-4 white--text mb-4"
+          :style="`background-color: ${subAccentColor}; border-radius: 5px;`"
         >
           Notifications
 
@@ -122,8 +127,6 @@
             <v-icon color="white">mdi-chevron-right</v-icon>
           </v-btn>
         </v-card-title>
-
-        <v-divider></v-divider>
       </v-card>
       <Notification />
     </v-navigation-drawer>
@@ -198,10 +201,6 @@ export default {
 </script>
 
 <style scoped>
-/* * {
-  border: 1px solid gray;
-} */
-
 .active-nav {
   background-color: #7b40f9;
   color: white;

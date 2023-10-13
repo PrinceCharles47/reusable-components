@@ -21,7 +21,7 @@
       </v-col>
       <v-col cols="12" md="3">
         <v-row dense>
-          <v-col cols="12" v-for="(num, i) in 2" :key="i">
+          <v-col cols="12" v-for="(num, i) in 3" :key="i">
             <v-card flat outlined>
               <v-card-title>147</v-card-title>
               <v-card-subtitle class="text-overline"

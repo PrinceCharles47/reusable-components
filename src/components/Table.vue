@@ -5,7 +5,6 @@
     }}</v-card-title>
 
     <div class="d-flex align-center">
-
       <v-text-field
         hide-details="auto"
         v-model="searchItem"
@@ -39,44 +38,49 @@
           </v-btn>
         </template>
 
-        <v-card>
+        <v-card class="pa-3">
           <v-toolbar
             flat
-            :color="tableDetails.color.primary"
-            class="white--text text-h6 px-4"
+            :color="tableDetails.color.secondary"
+            class="white--text text-h6"
+            :style="`border-radius: 5px;`"
             >FILTER ITEMS</v-toolbar
           >
 
-          <v-form class="mx-8 mt-6">
-            <v-combobox
-              v-for="(option, i) in filterOptions"
-              :key="i"
-              v-model="option.filteredItems"
-              :items="option.items"
-              chips
-              clearable
-              :label="option.category.toUpperCase()"
-              multiple
-            >
-              <template v-slot:selection="{ attrs, item, select, selected }">
-                <v-chip
-                  v-bind="attrs"
-                  small
-                  :input-value="selected"
-                  close
-                  @click="select"
-                  @click:close="removeSelectedFilter(item)"
-                  outlined
-                  :text-color="tableDetails.color.primary"
-                  :color="tableDetails.color.secondary"
-                >
-                  {{ item }}
-                </v-chip>
-              </template>
-            </v-combobox>
+          <v-form class="mx-3 mt-6">
+            <div v-for="(option, i) in filterOptions" :key="i">
+              <p class="mb-1 text-subtitle-2">
+                {{ option.category.toUpperCase() }}
+              </p>
+              <v-combobox
+                v-model="option.filteredItems"
+                :items="option.items"
+                chips
+                clearable
+                multiple
+                outlined
+                dense
+              >
+                <template v-slot:selection="{ attrs, item, select, selected }">
+                  <v-chip
+                    v-bind="attrs"
+                    small
+                    :input-value="selected"
+                    close
+                    @click="select"
+                    @click:close="removeSelectedFilter(item)"
+                    outlined
+                    :text-color="tableDetails.color.primary"
+                    :color="tableDetails.color.secondary"
+                  >
+                    {{ item }}
+                  </v-chip>
+                </template>
+              </v-combobox>
+            </div>
           </v-form>
 
-          <v-card-actions class="justify-end py-4 mx-4">
+          <v-card-actions class="justify-end py-4 px-3">
             <v-btn text color="red" class="px-8" @click="dialogFilter = false"
               >Close</v-btn
             >
@@ -198,7 +202,7 @@ export default {
       //Returns filtered items else all table items
 
       let newTableItems = [];
-      this.chipNames = []
+      this.chipNames = [];
       let oldTableItems = this.tableDetails.items;
       let currentFilter = null;
       let previousFilter = null;

@@ -1,28 +1,47 @@
 <template>
   <v-card flat class="px-0">
     <v-stepper flat v-model="activeStep" vertical>
-      <div v-for="(num, i) in 5" :key="i">
+      <div v-for="(formDetail, i) in formDetails" :key="i">
         <v-stepper-step
           :color="color.primary"
           :complete="activeStep > i + 1"
           :step="i + 1"
         >
-          <!-- if index is equla to length - 1, go back to stepper 1 or submit -->
-          Select an app
-          <small>Summarize if needed</small>
+          <!-- if index is equal to length - 1, go back to stepper 1 or submit -->
+          {{ formDetail.sectionName }}
         </v-stepper-step>
 
-        <v-stepper-content class="pl-0 py-0 pr-0 my-0 mx-4 ml-md-12" :step="i + 1">
+        <v-stepper-content
+          class="pl-0 py-0 pr-0 my-0 mx-4 ml-md-12"
+          :step="i + 1"
+        >
           <v-card flat class="pa-3" color="#FCFCFC">
             <v-form>
-              <div v-for="(num, i) in 3" :key="i">
-                <p class="mb-1 text-subtitle-2">Label Here</p>
-                <v-text-field
-                  outlined
-                  dense
-                  placeholder="Text Field"
-                ></v-text-field>
-              </div>
+              <v-row
+                class="py-2 mt-1"
+                v-for="(sectionField, i) in formDetail.sectionFields"
+                :key="i"
+              >
+                <v-col cols="12" class="py-0">
+                  <v-divider></v-divider>
+                  <v-card-subtitle :style="`color: ${color.primary};`" class="pa-0 my-2 font-weight-bold text-subtitle-1">{{sectionField.title}}</v-card-subtitle>
+                </v-col>
+                <v-col
+                  cols="12"
+                  md="4"
+                  class="py-0"
+                  v-for="(rowField, i) in sectionField.rowFields"
+                  :key="i"
+                >
+                  <p class="mb-0 text-subtitle-2">{{ rowField.label }}</p>
+                  <v-text-field
+                    outlined
+                    dense
+                    :placeholder="rowField.placeholder"
+                    v-model="rowField.model"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </v-form>
 
             <v-card-actions class="px-0">
@@ -53,6 +72,9 @@
 <script>
 export default {
   name: "MultiStepForm",
+  props: {
+    formDetails: Array,
+  },
   data: () => ({
     activeStep: 1,
 
@@ -64,8 +86,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* * {
-      border: 1px solid gray;
-    } */
-</style>
+<style scoped></style>
