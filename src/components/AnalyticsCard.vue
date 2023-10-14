@@ -1,5 +1,5 @@
 <template>
-  <v-card flat outlined class="d-flex align-center pa-2">
+  <v-card class="d-flex align-center pa-2">
     <v-card flat class="mr-3">
       <v-progress-circular
         :rotate="270"

@@ -24,7 +24,11 @@
               >
                 <v-col cols="12" class="py-0">
                   <v-divider></v-divider>
-                  <v-card-subtitle :style="`color: ${color.primary};`" class="pa-0 my-2 font-weight-bold text-subtitle-1">{{sectionField.title}}</v-card-subtitle>
+                  <v-card-subtitle
+                    :style="`color: ${color.primary};`"
+                    class="pa-0 my-2 font-weight-bold text-subtitle-1"
+                    >{{ sectionField.title }}</v-card-subtitle
+                  >
                 </v-col>
                 <v-col
                   cols="12"
@@ -44,7 +48,31 @@
               </v-row>
             </v-form>
 
-            <v-card-actions class="px-0">
+            <v-card-actions
+              class="px-0"
+              v-if="activeStep === formDetails.length"
+            >
+              <v-btn
+                :color="color.primary"
+                outlined
+                class="px-8"
+                @click="
+                  activeStep === 1
+                    ? (activeStep = 1)
+                    : (activeStep = activeStep - 1)
+                "
+                >Previous
+              </v-btn>
+
+              <v-btn
+                :color="color.primary"
+                class="white--text px-8"
+                >Submit
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions v-else class="px-0">
+              <!-- Previous step button-->
               <v-btn
                 elevation="0"
                 class="ml-auto ml-md-0"
@@ -54,11 +82,11 @@
                     : (activeStep = activeStep - 1)
                 "
               >
-                <!-- Previous -->
                 <v-icon :color="color.primary">mdi-chevron-double-left</v-icon>
               </v-btn>
+
+              <!-- Next step button -->
               <v-btn elevation="0" @click="activeStep = activeStep + 1">
-                <!-- {{ i === 4 ? 'Submit' : 'Next' }} -->
                 <v-icon :color="color.primary">mdi-chevron-double-right</v-icon>
               </v-btn>
             </v-card-actions>

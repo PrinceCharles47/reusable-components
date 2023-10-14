@@ -1,18 +1,25 @@
 <template>
   <v-card flat class="px-4">
+    <Alert :alert="alert" />
+
     <v-card-title class="px-0">{{
       tableDetails.title !== undefined ? tableDetails.title : null
     }}</v-card-title>
 
     <div class="d-flex align-center">
-      <v-text-field
-        hide-details="auto"
-        v-model="searchItem"
-        outlined
-        dense
-        placeholder="Search"
-        prepend-inner-icon="mdi-magnify"
-      ></v-text-field>
+      <v-row>
+        <v-col cols="12" md="3">
+          <v-text-field
+            hide-details="auto"
+            v-model="searchItem"
+            outlined
+            rounded
+            dense
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+          ></v-text-field>
+        </v-col>
+      </v-row>
     </div>
 
     <v-row class="mt-4">
@@ -38,12 +45,11 @@
           </v-btn>
         </template>
 
-        <v-card class="pa-3">
+        <v-card>
           <v-toolbar
             flat
             :color="tableDetails.color.secondary"
             class="white--text text-h6"
-            :style="`border-radius: 5px;`"
             >FILTER ITEMS</v-toolbar
           >
 
@@ -101,12 +107,12 @@
         <v-chip
           small
           close
-          outlined
-          :text-color="tableDetails.color.primary"
+          :text-color="'white'"
           :color="tableDetails.color.secondary"
           class="mr-1 mb-1"
           v-for="(chip, i) in chipNames"
           :key="i"
+          @click:close="removeSelectedFilter(chip)"
         >
           {{ chip.toUpperCase() }}
         </v-chip>
@@ -174,6 +180,7 @@
 //   ],
 // },
 //##################################################################
+import Alert from "../components/Alert.vue";
 
 export default {
   name: "Table",
@@ -181,7 +188,18 @@ export default {
     tableDetails: Object,
     filter: Object,
   },
+
+  components: {
+    Alert,
+  },
+
   data: () => ({
+    alert: {
+      message: "No items found.",
+      timeout: 3000,
+      isAlert: false,
+      type: "error",
+    },
     searchItem: null,
 
     dialogFilter: false,
@@ -195,12 +213,18 @@ export default {
   methods: {
     //Resets the selected filter
     removeSelectedFilter: function (item) {
-      this.filterSelected.splice(this.filterSelected.indexOf(item), 1);
+      this.filterOptions.map((option) => {
+        let index = option.filteredItems.indexOf(item);
+        if (index >= 0) {
+          option.filteredItems.splice(index, 1);
+        }
+      });
+
+      this.filterList();
     },
 
     filterList() {
       //Returns filtered items else all table items
-
       let newTableItems = [];
       this.chipNames = [];
       let oldTableItems = this.tableDetails.items;
@@ -225,7 +249,6 @@ export default {
                 tableItem[filter.category].toLowerCase() === item.toLowerCase()
               ) {
                 newTableItems.push(tableItem);
-                console.log(tableItem);
               }
             });
           });
@@ -234,10 +257,10 @@ export default {
         }
 
         if (newTableItems.length <= 0) {
+          this.alert.isAlert = true;
+          this.chipNames = [];
           return (this.itemList = this.tableDetails.items);
         }
-
-        console.log(newTableItems);
         return (this.itemList = newTableItems);
       });
     },

@@ -30,7 +30,7 @@
         <!-- <v-list-item-icon class="mr-2">
           <v-img src="../assets/eclipse.png" width="50"></v-img>
         </v-list-item-icon> -->
-        <v-list-item-content :style="`background-color: ${accentColor};`">
+        <v-list-item-content :style="`background-color: ${subAccentColor};`">
           <v-list-item-title class="font-weight-light text-h6 py-6 mx-4">
             <span class="white--text">Medi</span>
             <span class="font-weight-bold white--text">Book</span>
@@ -162,9 +162,14 @@ export default {
         icon: "mdi-chart-areaspline-variant",
       },
       {
+        name: "Form",
+        route: "form",
+        icon: "mdi-list-box",
+      },
+      {
         name: "Multistep Form",
         route: "multistep-form",
-        icon: "mdi-list-box",
+        icon: "mdi-format-line-weight",
       },
       {
         name: "Tabs",
@@ -202,7 +207,7 @@ export default {
 
 <style scoped>
 .active-nav {
-  background-color: #7b40f9;
+  background-color: #a981ff;
   color: white;
   border-radius: 5px;
   /* border-left: 2px solid #a981ff; */

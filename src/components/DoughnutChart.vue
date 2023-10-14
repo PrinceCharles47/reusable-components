@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="px-4 pb-4">
+  <v-card class="px-4 pb-4">
     <v-card-title class="px-0">{{ "Chart Title" }}</v-card-title>
 
     <v-row dense>

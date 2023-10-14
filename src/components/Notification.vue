@@ -20,7 +20,7 @@
         bench="4"
         :items="items"
         :item-height="60"
-        style="height: 90vh"
+        style="height: 85vh"
       >
         <template v-slot:default="{ item }">
           <v-list-item>

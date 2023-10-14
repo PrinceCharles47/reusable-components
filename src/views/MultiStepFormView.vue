@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row dense>
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="12">
         <MultiStepForm :formDetails="formDetails" />
       </v-col>
-      <v-col cols="12" md="3">
+      <!-- <v-col cols="12" md="3">
         <v-card
           flat
           class="pa-3 mb-2"
@@ -44,7 +44,7 @@
             </v-row>
           </v-card>
         </v-card>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>

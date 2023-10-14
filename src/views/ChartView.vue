@@ -1,16 +1,16 @@
 <template>
   <v-container>
-    <v-row dense class="mt-3 mb-6">
+    <v-row dense class="mb-6">
       <v-col cols="12" md="9">
         <BarChart :chartData="chartData" />
 
-        <v-card flat class="pa-4 mt-2 d-flex">
-          <v-row dense>
+        <!-- <v-card class="pa-4 mt-2 d-flex"> -->
+          <v-row dense class="mt-2 d-flex">
             <v-col cols="12" md="4" v-for="(num, i) in 3" :key="i">
               <AnalyticsCard />
             </v-col>
           </v-row>
-        </v-card>
+        <!-- </v-card> -->
       </v-col>
       <v-col cols="12" md="3">
         <DoughnutChart />
