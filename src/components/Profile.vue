@@ -1,143 +1,27 @@
 <template>
   <v-container>
-    <v-card
-      flat
-      class="pt-4 pl-4 mb-2"
-      :style="`background-color: ${color.primary};`"
-    >
-      <v-img
-        :src="require('../assets/cath_avatar.jpg')"
-        max-width="100"
-        max-height="100"
-        :style="`border-radius: 5px; border: 2px solid white;`"
-      ></v-img>
-      <v-card-title class="pl-0 white--text">Cathlyn Mae Lapid</v-card-title>
-
-      <!-- <v-divider color="white"></v-divider>
-
-      <v-card-subtitle class="text-subtitle-1 font-weight-bold pl-0"
-        >Basic Information</v-card-subtitle
-      >
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Date of Birth:</p>
-        <p class="text-subtitle-1">July 6, 2001</p>
-      </v-card-text>
-
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Age:</p>
-        <p class="text-subtitle-1">22 years old</p>
-      </v-card-text>
-
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Gender:</p>
-        <p class="text-subtitle-1">Female</p>
-      </v-card-text>
-
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Mobile Number:</p>
-        <p class="text-subtitle-1">09058112554</p>
-      </v-card-text>
-
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Email:</p>
-        <p class="text-subtitle-1">cathlynmae@gmail.com</p>
-      </v-card-text>
-
-      <v-card-text class="py-0 pl-0">
-        <p class="text-subtitle-2 font-weight-bold mb-0">Address:</p>
-        <p class="text-subtitle-1">
-          71 Purok 1, Brgy. Sta. Rita, Concepcion, Tarlac
-        </p>
-      </v-card-text> -->
+    <v-card flat id="header-title" class="pa-4 mb-6 d-flex flex-column flex-md-row justify-md-space-between align-md-center">
+      <div>
+        <v-card-title class="pt-2 px-0 white--text">Clemente, Prince Charles M.</v-card-title>
+        <v-card-subtitle class="pb-2 px-0 white--text">Something Goes Here</v-card-subtitle>
+      </div>
+      <v-card-actions class="pl-0">
+        <v-btn small outlined elevation="0" class="px-4 white--text">Edit <v-icon small class="ml-2">mdi-pencil</v-icon></v-btn>
+      </v-card-actions>
     </v-card>
 
-    <v-card flat class="px-0 pb-4" outlined>
-      <v-card-subtitle
-        class="text-subtitle-1 font-weight-bold py-2"
-        :style="`color: ${color.primary};`"
-        >Basic Information</v-card-subtitle
-      >
-      <v-divider class="mb-4"></v-divider>
-      <v-row dense>
-        <!-- <v-col class="pt-2" cols="12" v-for="(num, i) in 5" :key="i">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold mb-0">Date of Birth:</p>
-            <p class="text-subtitle-2 font-weight-regular mb-0">July 6, 2001</p>
-          </v-card-text>
-        </v-col> -->
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Date of Birth: <span class="text-subtitle-2 font-weight-regular">July 6, 2001</span>
-            </p>
-          </v-card-text>
-        </v-col>
+    <v-card class="mb-6" flat v-for="(information, i) in informationArr" :key="i">
+      <div class="d-flex">
+        <p class="data-title px-4 mr-auto py-1 mb-0 text-subtitle-2 white--text font-weight-bold">{{ information.title.toUpperCase() }}</p>
+      </div>
+      <v-divider class="divider"></v-divider>
 
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Age: <span class="text-subtitle-2 font-weight-regular">22 years old</span>
-            </p>
-          </v-card-text>
-        </v-col>
-
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Gender: <span class="text-subtitle-2 font-weight-regular">Female</span>
-            </p>
-          </v-card-text>
-        </v-col>
-
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Mobile Number: <span class="text-subtitle-2 font-weight-regular">09058112554</span>
-            </p>
-          </v-card-text>
-        </v-col>
-
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Email: <span class="text-subtitle-2 font-weight-regular">cathlynmae@gmail.com</span>
-            </p>
-          </v-card-text>
-        </v-col>
-
-        <v-col cols="12">
-          <v-card-text class="py-0">
-            <p class="text-subtitle-2 font-weight-bold">
-              Address:
-              <span class="text-subtitle-2 font-weight-regular">
-                71 Purok 1, Brgy. Sta. Rita, Concepcion, Tarlac
-              </span>
-            </p>
-          </v-card-text>
+      <v-row class="mx-4 mt-6 pb-3">
+        <v-col cols="12" md="4" v-for="(data, i) in information.data" :key="i" class="pa-0">
+          <p class="text-body-2 mb-3"><span class="font-weight-bold mr-2">{{data.label}}:</span> {{ data.value }}</p>
         </v-col>
       </v-row>
     </v-card>
-    <!-- <v-card
-      flat
-      class="pa-4 d-flex align-center"
-      outlined
-      :style="`background-color: ${color.primary};`"
-    >
-      <v-img
-        :src="require('../assets/cath_avatar.jpg')"
-        max-width="90"
-        max-height="90"
-        :style="`border-radius: 5px; border: 2px solid white`"
-      ></v-img>
-
-      <div class="ml-4">
-        <v-card-title class="text-h5 white--text pt-0 pl-0 pb-2">Cathlyn Mae Lapid</v-card-title>
-        <v-btn small outlined class="white--text px-2">
-            Edit
-            <v-icon color="white" class="ml-2" small>mdi-pencil</v-icon>
-        </v-btn>
-      </div>
-    </v-card> -->
   </v-container>
 </template>
 
@@ -145,6 +29,50 @@
 export default {
   name: "Profile",
   data: () => ({
+    informationArr: [
+      {
+        title: "Basic information",
+        data: [
+          {
+            label: "Date of birth",
+            value: "July 6, 2001"
+          },
+          {
+            label: "Age",
+            value: "22 years old"
+          },
+          {
+            label: "Gender",
+            value: "Male"
+          },
+          {
+            label: "Mobile number",
+            value: "09058112553"
+          },
+          {
+            label: "Email",
+            value: "clemente@gmail.com"
+          }
+        ]
+      },
+      {
+        title: "Personal information",
+        data: [
+          {
+            label: "Address",
+            value: "123 Purok 1, Brgy. Pakul, Jaen, Nueva Ecija 3109"
+          },
+          {
+            label: "Mother's name",
+            value: "Fortunata Miranda"
+          },
+          {
+            label: "Father's name",
+            value: "Benjamin Clemente"
+          }
+        ]
+      }
+    ],
     color: {
       primary: "#7B40F9",
       secondary: "#A981FF",
@@ -153,4 +81,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#header-title{
+  background-color: #A981FF;
+}
+
+.data-title{
+  background-color: #A981FF;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.divider{
+  background-color: #A981FF;
+}
+</style>

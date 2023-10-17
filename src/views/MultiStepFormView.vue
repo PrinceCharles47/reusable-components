@@ -4,53 +4,13 @@
       <v-col cols="12" md="12">
         <MultiStepForm :formDetails="formDetails" />
       </v-col>
-      <!-- <v-col cols="12" md="3">
-        <v-card
-          flat
-          class="pa-3 mb-2"
-          v-for="(formDetail, i) in formDetails"
-          :key="i"
-        >
-          <v-card flat class="pb-4 px-0" id="container-card">
-            <v-toolbar
-              flat
-              class="text-h6 mb-5"
-              :style="`border-bottom: 3px solid ${color.secondary};`"
-            >
-              <v-card-subtitle class="text-subtitle-1 font-weight-bold pa-0">{{
-                formDetail.sectionName
-              }}</v-card-subtitle>
-            </v-toolbar>
-
-            <v-row
-              dense
-              v-for="(sectionField, i) in formDetail.sectionFields"
-              :key="i"
-            >
-              <v-col
-                cols="12"
-                v-for="(rowField, i) in sectionField.rowFields"
-                :key="i"
-              >
-                <v-card-text class="py-0">
-                  <p class="text-subtitle-2 font-weight-bold mb-0">
-                    {{ rowField.label }}
-                  </p>
-                  <p class="text-subtitle-2 font-weight-regular">
-                    {{ rowField.model }}
-                  </p>
-                </v-card-text>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-card>
-      </v-col> -->
     </v-row>
   </v-container>
 </template>
 
 <script>
 import MultiStepForm from "../components/MultiStepForm";
+import {rules} from "../utils/rules"
 
 export default {
   name: "MultiStepFormView",

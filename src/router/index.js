@@ -6,6 +6,8 @@ import MultiStepFormView from '../views/MultiStepFormView.vue'
 import FormView from '../views/FormView.vue'
 import TabsView from '../views/TabsView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import CardView from '../views/CardView.vue'
+import CalendarView from '../views/CalendarView.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +41,16 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/card',
+    name: 'card',
+    component: CardView
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: CalendarView
   },
 ]
 

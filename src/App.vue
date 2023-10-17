@@ -35,7 +35,8 @@ export default {
   font-family: "Roboto", sans-serif !important;
 } */
 
-#wrapper {
-  background-color: #fafafa;
-}
+/* #wrapper {
+  background-color: #fafafa; */
+  /* background-color: #ffffff;
+} */
 </style>

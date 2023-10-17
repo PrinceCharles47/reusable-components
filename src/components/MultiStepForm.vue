@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="px-0">
+  <div>
     <v-stepper flat v-model="activeStep" vertical>
       <div v-for="(formDetail, i) in formDetails" :key="i">
         <v-stepper-step
@@ -15,7 +15,7 @@
           class="pl-0 py-0 pr-0 my-0 mx-4 ml-md-12"
           :step="i + 1"
         >
-          <v-card flat class="pa-3" color="#FCFCFC">
+          <v-card flat class="pa-3">
             <v-form>
               <v-row
                 class="py-2 mt-1"
@@ -94,7 +94,7 @@
         </v-stepper-content>
       </div>
     </v-stepper>
-  </v-card>
+  </div>
 </template>
 
 <script>

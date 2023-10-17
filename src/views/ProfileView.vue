@@ -1,16 +1,8 @@
 <template>
   <v-container>
-    <v-card flat class="px-2 mt-3">
-      <v-row dense>
-        <v-col cols="12" md="3">
-          <Profile />
-        </v-col>
-
-        <v-col cols="12" md="9">
-          <InformationCard v-for="(num, i) in 3" :key="i" />
-        </v-col>
-      </v-row>
-    </v-card>
+    <!-- <v-card flat class="px-2 mt-3"> -->
+      <Profile />
+    <!-- </v-card> -->
   </v-container>
 </template>
 

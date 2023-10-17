@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex align-center pa-2">
+  <v-card outlined class="ma-0 d-flex pa-2">
     <v-card flat class="mr-3">
       <v-progress-circular
         :rotate="270"
@@ -12,10 +12,10 @@
       </v-progress-circular>
     </v-card>
 
-    <v-card-text style="background-color: #f4f4f4; border-radius: 5px;" class="pa-0">
-      <v-card-title :style="`color: ${color[0]};`" class="font-weight-bold pb-1">147</v-card-title>
-      <v-card-subtitle class="text-overline">Title here</v-card-subtitle>
-    </v-card-text>
+    <div class="pa-0 data-cards">
+      <v-card-title class="pt-3">147</v-card-title>
+      <v-card-subtitle class="text-body-2 pb-3">Title here</v-card-subtitle>
+    </div>
   </v-card>
 </template>
 
@@ -29,3 +29,13 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+/* .data-cards {
+  background-color: #f9faff;
+} */
+
+/* *{
+  border: 1px solid gray;
+} */
+</style>

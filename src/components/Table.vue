@@ -1,28 +1,26 @@
 <template>
-  <v-card flat class="px-4">
+  <v-card flat class="px-4 pb-4">
     <Alert :alert="alert" />
 
-    <v-card-title class="px-0">{{
-      tableDetails.title !== undefined ? tableDetails.title : null
-    }}</v-card-title>
+    <div class="d-flex flex-md-row align-md-center flex-column">
+      <v-card-title class="px-0">{{
+        tableDetails.title !== undefined ? tableDetails.title : null
+      }}</v-card-title>
 
-    <div class="d-flex align-center">
-      <v-row>
-        <v-col cols="12" md="3">
-          <v-text-field
-            hide-details="auto"
-            v-model="searchItem"
-            outlined
-            rounded
-            dense
-            placeholder="Search"
-            prepend-inner-icon="mdi-magnify"
-          ></v-text-field>
-        </v-col>
-      </v-row>
+      <v-divider vertical class="mx-4 my-0 my-md-2"></v-divider>
+
+      <v-text-field
+        hide-details="auto"
+        v-model="searchItem"
+        outlined
+        rounded
+        dense
+        placeholder="Search"
+        prepend-inner-icon="mdi-magnify"
+      ></v-text-field>
     </div>
 
-    <v-row class="mt-4">
+    <v-row class="mt-2">
       <v-dialog
         v-model="dialogFilter"
         transition="dialog-bottom-transition"
@@ -36,7 +34,7 @@
             v-on="on"
             elevation="0"
             small
-            class="ml-3 mb-1"
+            class="ml-3 mb-4 mb-md-2"
           >
             Filters
             <v-icon small class="ml-2" :color="tableDetails.color.primary"
@@ -119,30 +117,59 @@
       </v-col>
     </v-row>
 
-    <v-data-table
-      :headers="tableDetails.headers"
-      :items="itemList"
-      :search="searchItem"
-      class="mt-4"
-      @click:row="redirect"
-    >
-      <template
-        v-if="tableDetails.actions !== undefined"
-        v-slot:[`item.action`]="{ item }"
+    <v-card flat>
+      <v-data-table
+        :headers="tableDetails.headers"
+        :items="itemList"
+        items-per-page="5"
+        :search="searchItem"
+        class="mt-4"
+        @click:row="redirect"
+        show-select
+        item-key="random"
       >
-        <v-btn
-          small
-          elevation="0"
-          outlined
-          class="font-weight-bold mr-2"
-          v-for="(action, i) in tableDetails.actions"
-          :key="i"
-          :style="`border-color: #F0F0F0; color: ${action.color};`"
+        <!-- <template v-slot:expanded-item="{ headers, item }">
+          <td :colspan="headers.length">
+            <v-container>
+              <v-simple-table>
+                <template v-slot:default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">Name</th>
+                      <th class="text-left">Specialization</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in itemList" :key="item.name">
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.specialization }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-container>
+          </td>
+        </template> -->
+
+        <template
+          v-if="tableDetails.actions !== undefined"
+          v-slot:[`item.action`]="{ item }"
         >
-          {{ action.name }}
-        </v-btn>
-      </template>
-    </v-data-table>
+          <v-btn
+            small
+            elevation="0"
+            outlined
+            class="font-weight-bold mr-2"
+            v-for="(action, i) in tableDetails.actions"
+            :key="i"
+            :style="`border-color: #F0F0F0; color: ${action.color};`"
+            @click="buttonFunction('hello')"
+          >
+            {{ action.name }}
+          </v-btn>
+        </template>
+      </v-data-table>
+    </v-card>
   </v-card>
 </template>
 
@@ -179,7 +206,10 @@
 //     },
 //   ],
 // },
+//
+// buttonFunction (function for the action/button within the table)
 //##################################################################
+
 import Alert from "../components/Alert.vue";
 
 export default {
@@ -187,6 +217,7 @@ export default {
   props: {
     tableDetails: Object,
     filter: Object,
+    buttonFunction: Function,
   },
 
   components: {

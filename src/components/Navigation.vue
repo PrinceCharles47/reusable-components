@@ -1,13 +1,15 @@
 <template>
   <div>
-    <v-app-bar app dense flat :color="navColor">
+    <v-app-bar app dense flat>
       <v-app-bar-nav-icon
         @click="navDrawer = !navDrawer"
         :color="accentColor"
       ></v-app-bar-nav-icon>
       <v-app-bar-title class="font-weight-light pl-0">
         <span class="font-weight-light">Medi</span>
-        <span class="font-weight-bold title">Book</span>
+        <span class="font-weight-bold title" :style="`color: ${accentColor};`"
+          >Book</span
+        >
       </v-app-bar-title>
       <v-spacer></v-spacer>
       <!-- <v-img src="../assets/eclipse.png" contain max-height="35" max-width="35"></v-img> -->
@@ -18,14 +20,14 @@
       >
         <v-icon :color="accentColor">mdi-bell</v-icon>
       </v-btn>
+
+      <v-btn icon @click="changeTheme">
+        <v-icon :color="accentColor">mdi-theme-light-dark</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <!-- Contains navigation buttons inside the drawer -->
-    <v-navigation-drawer
-      app
-      v-model="navDrawer"
-      :color="navColor"
-    >
+    <v-navigation-drawer app v-model="navDrawer">
       <v-list-item class="pa-0">
         <!-- <v-list-item-icon class="mr-2">
           <v-img src="../assets/eclipse.png" width="50"></v-img>
@@ -38,8 +40,8 @@
         </v-list-item-content>
       </v-list-item>
 
-      <!-- Loop through the navButtons and create a button on each loop -->
-      <v-list class="mt-4" nav dense subheader>
+      <!-- Loops through the navButtons and create a button on each loop -->
+      <v-list class="mt-6" nav dense subheader>
         <v-divider></v-divider>
         <v-subheader class="text-caption">Subheader</v-subheader>
 
@@ -67,6 +69,11 @@
       <v-list class="mt-4" nav dense subheader>
         <v-divider></v-divider>
         <v-subheader class="text-caption">Subheader</v-subheader>
+
+        <v-list-item class="pr-0">
+          <v-list-item-title>DARK MODE</v-list-item-title>
+          <v-switch v-model="darkMode" inset :color="subAccentColor"></v-switch>
+        </v-list-item>
 
         <v-list-item
           v-for="(item, index) in navButtons2"
@@ -144,6 +151,7 @@ export default {
   },
 
   data: () => ({
+    darkMode: true,
     currentUser: null,
     navDrawer: false,
     notificationDrawer: false,
@@ -177,9 +185,19 @@ export default {
         icon: "mdi-tab",
       },
       {
+        name: "Cards",
+        route: "card",
+        icon: "mdi-card-text",
+      },
+      {
         name: "User Profile",
         route: "profile",
         icon: "mdi-account",
+      },
+      {
+        name: "Calendar",
+        route: "calendar",
+        icon: "mdi-calendar-month",
       },
     ],
 
@@ -197,11 +215,30 @@ export default {
     ],
   }),
 
+  methods: {
+    changeTheme: function () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+  },
+
   computed: {
     currentRoute() {
       return this.$route.name;
     },
   },
+
+  mounted() {
+    this.$vuetify.theme.dark = this.darkMode;
+  },
+
+  watch: {
+    darkMode: {
+      handler(newVal, oldVal){
+        this.$vuetify.theme.dark = newVal
+      },
+      deep: true
+    }
+  }
 };
 </script>
 
@@ -210,9 +247,8 @@ export default {
   background-color: #a981ff;
   color: white;
   border-radius: 5px;
-  /* border-left: 2px solid #a981ff; */
 }
-.title {
+/* .title {
   color: #7b40f9;
-}
+}  */
 </style>

@@ -1,15 +1,12 @@
 <template>
-  <v-card class="px-4 pb-4">
-    <v-card-title class="px-0">{{
-      chartData.title !== undefined ? chartData.title : "Chart Title"
-    }}</v-card-title>
+  <v-card outlined class="pa-2">
+    <v-card-title v-if="chartData.title !== undefined">{{ chartData.title }}</v-card-title>
 
     <v-row dense>
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="12">
         <v-container
           fill-height
           class="container"
-          style="border: 1px solid #f0f0f0; border-radius: 5px"
         >
           <Bar
             v-if="loaded"
@@ -19,12 +16,13 @@
           />
         </v-container>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="12">
+        <v-divider></v-divider>
         <v-row dense>
-          <v-col cols="12" v-for="(num, i) in 3" :key="i">
-            <v-card flat outlined>
-              <v-card-title>147</v-card-title>
-              <v-card-subtitle class="text-overline"
+          <v-col cols="12" md="4" v-for="(num, i) in 3" :key="i">
+            <v-card flat class="data-cards">
+              <v-card-title class="pt-3">147</v-card-title>
+              <v-card-subtitle class="text-body-2 pb-3"
                 >Title here</v-card-subtitle
               >
             </v-card>
@@ -92,6 +90,15 @@ export default {
 
 <style scoped>
 /* *{
-border: 1px solid gray;
+border: 1px solid whitesmoke;
 } */
+
+/* .data-cards{
+  background-color: #F9FAFF;
+} */
+
+.chart-card{
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+}
 </style>
