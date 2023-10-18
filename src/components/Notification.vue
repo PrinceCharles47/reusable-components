@@ -19,11 +19,11 @@
       <v-virtual-scroll
         bench="4"
         :items="items"
-        :item-height="60"
+        :item-height="125"
         style="height: 85vh"
       >
         <template v-slot:default="{ item }">
-          <v-list-item>
+          <!-- <v-list-item>
             <v-list-item-avatar>
               <v-avatar :color="item.color" size="56" class="white--text">
                 {{ item.initials }}
@@ -36,7 +36,26 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-divider></v-divider>
+          <v-divider></v-divider> -->
+
+          <v-card
+            v-for="(num, i) in 5"
+            :key="i"
+            class="d-flex pa-4"
+            flat
+          >
+            <v-card outlined class="d-flex flex-column align-center mr-4">
+              <v-card-title>10</v-card-title>
+              <v-card-subtitle>February</v-card-subtitle>
+            </v-card>
+            <div>
+              <v-divider></v-divider>
+              <p class="text-body-1 mb-0 mt-3">
+                Lorem ipsum dolor sit, amet consectetur
+              </p>
+              <p class="text-subtitle-2">Lorem ipsum dolor sit</p>
+            </div>
+          </v-card>
         </template>
       </v-virtual-scroll>
     </v-card>

@@ -10,7 +10,7 @@
       </v-card-actions>
     </v-card>
 
-    <v-card class="mb-6" flat v-for="(information, i) in informationArr" :key="i">
+    <v-card class="mb-6 card-info" flat v-for="(information, i) in informationArr" :key="i">
       <div class="d-flex">
         <p class="data-title px-4 mr-auto py-1 mb-0 text-subtitle-2 white--text font-weight-bold">{{ information.title.toUpperCase() }}</p>
       </div>
@@ -94,5 +94,9 @@ export default {
 
 .divider{
   background-color: #A981FF;
+}
+
+.card-info{
+  background-color: transparent;
 }
 </style>

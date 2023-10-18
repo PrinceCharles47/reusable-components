@@ -13,7 +13,12 @@ export default {
   components: {
     Calendar,
   },
-  data: () => ({}),
+  data: () => ({
+    color: {
+      primary: "#7B40F9",
+      secondary: "#A981FF",
+    },
+  }),
 };
 </script>
 

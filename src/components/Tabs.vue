@@ -4,9 +4,23 @@
       <v-tab v-for="item in items" :key="item.tab">
         {{ item.tab }}
       </v-tab>
+
+      <v-tabs-items v-model="tab">
+        <v-tab-item v-for="item in items" :key="item.tab">
+          <v-card flat>
+            <v-card-text
+              >{{ item.content }} Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Deleniti consectetur possimus exercitationem magni
+              molestias debitis sequi dicta quod in, distinctio minus minima,
+              molestiae voluptatem. Et saepe earum magnam magni
+              adipisci!</v-card-text
+            >
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-tabs>
 
-    <v-tabs-items v-model="tab">
+    <!-- <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in items" :key="item.tab">
         <v-card flat>
           <v-card-text
@@ -18,7 +32,7 @@
           >
         </v-card>
       </v-tab-item>
-    </v-tabs-items>
+    </v-tabs-items> -->
   </v-card>
 </template>
 

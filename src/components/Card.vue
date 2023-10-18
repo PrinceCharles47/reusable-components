@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="3">
         <v-card flat>
           <v-card-title>Card Title</v-card-title>
           <v-card-subtitle>Card Subtitle</v-card-subtitle>
@@ -42,10 +42,12 @@
         </v-card>
       </v-col> -->
 
-      <v-col cols="12" md="4">
+      <v-col cols="12" md="3">
         <v-card outlined class="pa-0 pb-6">
           <v-card-text class="text-center">
-            <v-card-title class="d-flex justify-center" :style="`color: ${color.secondary};`"
+            <v-card-title
+              class="d-flex justify-center"
+              :style="`color: ${color.secondary};`"
               >LOG IN</v-card-title
             >
           </v-card-text>
@@ -70,16 +72,42 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="4">
-        <v-card outlined>
+      <v-col cols="12" md="3">
+        <v-card outlined class="pb-4">
           <v-card-title>Card</v-card-title>
-          <v-card-text>
-            <div v-for="(num, i) in 5" :key="i" @click="test(num)">
-              <v-divider></v-divider>
-              <p class="text-body-1 mb-0 mt-3">Lorem ipsum dolor sit, amet consectetur</p>
-              <p class="text-subtitle-2">Lorem ipsum dolor sit</p>
+          <v-card flat v-for="(num, i) in 5" :key="i" @click="test(num)" class="mx-4 pb-4">
+            <v-divider></v-divider>
+            <p class="text-overline mb-0 mt-4">July 6</p>
+            <p class="text-body-1 mb-0">Lorem ipsum dolor sit, amet consectetur</p>
+          </v-card>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="3">
+        <v-card outlined class="pb-4">
+          <v-card-title>Card</v-card-title>
+          <v-card
+            v-for="(num, i) in 5"
+            :key="i"
+            @click="test(num)"
+            class="d-flex py-3 px-4 align-center"
+            flat
+          >
+            <v-card flat class="d-flex flex-column align-center">
+              <v-card-title class="pa-0 mb-4 text-subtitle-1">10</v-card-title>
+              <v-card-subtitle class="py-0 px-2 text-caption"
+                >February</v-card-subtitle
+              >
+            </v-card>
+            <v-divider vertical class="mx-4"></v-divider>
+            <div>
+              <!-- <v-divider></v-divider> -->
+              <p class="text-body-2 mb-0">
+                Lorem ipsum dolor sit, amet consectetur
+              </p>
+              <p class="text-caption mb-0">Lorem ipsum dolor sit</p>
             </div>
-          </v-card-text>
+          </v-card>
         </v-card>
       </v-col>
     </v-row>
@@ -103,18 +131,14 @@ export default {
   }),
 
   methods: {
-    test: function(num){
-      alert(num)
-    }
-  }
+    test: function (num) {
+      alert(num);
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* * {
-      border: 1px solid whitesmoke;
-    } */
-
 /* #form-title {
   border-bottom: 2px solid #a981ff;
 } */

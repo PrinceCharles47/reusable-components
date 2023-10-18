@@ -1,5 +1,6 @@
 <template>
   <v-row class="fill-height">
+    <v-btn class="ml-auto mr-3 mt-4">Schedule Appointment</v-btn>
     <v-col cols="12">
       <v-card class="d-flex flex-column flex-md-row align-center pa-4">
         <div class="d-flex align-center mb-2 mb-md-0">
