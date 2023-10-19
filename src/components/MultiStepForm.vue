@@ -11,6 +11,7 @@
           {{ formDetail.sectionName }}
         </v-stepper-step>
 
+        <!-- Contains the form itself -->
         <v-stepper-content
           class="pl-0 py-0 pr-0 my-0 mx-4 ml-md-12"
           :step="i + 1"
@@ -64,9 +65,7 @@
                 >Previous
               </v-btn>
 
-              <v-btn
-                :color="color.primary"
-                class="white--text px-8"
+              <v-btn :color="color.primary" class="white--text px-8"
                 >Submit
               </v-btn>
             </v-card-actions>
@@ -98,6 +97,28 @@
 </template>
 
 <script>
+//##################################################################
+// PROPS:
+// formDetails: [
+//   {
+//     sectionName: String (Name of a section/part of the form),
+//     sectionFields: [ (Form fields for each section)
+//       {
+//         title: String (Title of a group of form fields),
+//         rowFields: [ (Form fields for each group of form fields)
+//           {
+//             label: String,
+//             type: Form type (e.g. text field, text area),
+//             placeholder: String,
+//             model: empty string (will contain the form value),
+//           }
+//         ],
+//       }
+//      ]
+//    }
+// ];
+
+
 export default {
   name: "MultiStepForm",
   props: {

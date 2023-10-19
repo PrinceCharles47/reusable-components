@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- App bar. Contains the hamburger menu -->
     <v-app-bar app dense flat>
       <v-app-bar-nav-icon
         @click="navDrawer = !navDrawer"
@@ -26,7 +27,7 @@
       </v-btn>
     </v-app-bar>
 
-    <!-- Contains navigation buttons inside the drawer -->
+    <!-- Contains navigation buttons inside the navigation drawer -->
     <v-navigation-drawer app v-model="navDrawer">
       <v-list-item class="pa-0">
         <!-- <v-list-item-icon class="mr-2">
@@ -40,7 +41,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <!-- Loops through the navButtons and create a button on each loop -->
+      <!-- Loops through the navButtons array and creates a button on each loop -->
       <v-list class="mt-6" nav dense subheader>
         <v-divider></v-divider>
         <v-subheader class="text-caption">Subheader</v-subheader>
@@ -106,7 +107,7 @@
       </template>
     </v-navigation-drawer>
 
-    <!-- Notification drawer -->
+    <!-- Notification drawer/Extra drawer -->
     <v-navigation-drawer
       temporary
       width="375"
@@ -155,9 +156,10 @@ export default {
     currentUser: null,
     navDrawer: false,
     notificationDrawer: false,
-    navColor: "#FFFFFF",
     accentColor: "#7B40F9",
     subAccentColor: "#A981FF",
+
+    //Navigation buttons
     navButtons1: [
       {
         name: "Table",

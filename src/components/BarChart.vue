@@ -1,13 +1,13 @@
 <template>
   <v-card outlined class="pa-2">
-    <v-card-title v-if="chartData.title !== undefined">{{ chartData.title }}</v-card-title>
+    <v-card-title v-if="chartData.title !== undefined">{{
+      chartData.title
+    }}</v-card-title>
 
+    <!-- Bar Chart -->
     <v-row dense>
       <v-col cols="12" md="12">
-        <v-container
-          fill-height
-          class="container"
-        >
+        <v-container fill-height class="container">
           <Bar
             v-if="loaded"
             :data="chartData.data"
@@ -16,6 +16,8 @@
           />
         </v-container>
       </v-col>
+
+      <!-- Data for chart analytics -->
       <v-col cols="12" md="12">
         <v-divider></v-divider>
         <v-row dense>
@@ -34,6 +36,38 @@
 </template>
 
 <script>
+//##################################################################
+// Note: This component uses the Chart.js and Vue-chartjs libraries
+// PROPS:
+// chartData: {
+//   title: String,
+//   data: { (Contains the data to be displayed)
+//     labels: Array,
+//     datasets: [ (May contain one or more datasets)
+//       {
+//         label: String,
+//         backgroundColor: Hex,
+//         data: Array,
+//       },
+//     ],
+//   },
+
+//   options: { (For customizing the UI of the chart)
+//     responsive: Boolean,
+//     maintainAspectRatio: Boolean,
+//     indexAxis: "x" or "y",
+//     plugins: {
+//       legend: {
+//         position: "bottom" (bottom, top, left, or right),
+//         align: "start" (start, end, center),
+//       },
+//     },
+//   },
+// },
+//##################################################################
+
+
+
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -97,7 +131,7 @@ border: 1px solid whitesmoke;
   background-color: #F9FAFF;
 } */
 
-.chart-card{
+.chart-card {
   border: 1px solid #f0f0f0;
   border-radius: 5px;
 }

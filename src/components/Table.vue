@@ -9,6 +9,7 @@
 
       <v-divider vertical class="mx-4 my-0 my-md-2"></v-divider>
 
+      <!-- Search bar for table -->
       <v-text-field
         hide-details="auto"
         v-model="searchItem"
@@ -20,6 +21,8 @@
       ></v-text-field>
     </div>
 
+
+    <!-- Dialog/Form for filtering -->
     <v-row class="mt-2">
       <v-dialog
         v-model="dialogFilter"
@@ -101,6 +104,7 @@
         </v-card>
       </v-dialog>
 
+      <!-- Chips containing the name of filter items/selected filters -->
       <v-col class="pt-0">
         <v-chip
           small
@@ -117,6 +121,7 @@
       </v-col>
     </v-row>
 
+    <!-- Displays the actual table -->
     <v-card flat>
       <v-data-table
         :headers="tableDetails.headers"
@@ -254,7 +259,7 @@ export default {
     },
 
     filterList() {
-      //Returns filtered items else all table items
+      //Returns filtered items or all items in the table.
       let newTableItems = [];
       this.chipNames = [];
       let oldTableItems = this.tableDetails.items;
@@ -262,10 +267,12 @@ export default {
       let previousFilter = null;
       let isFilterEmpty = true;
 
+      // If filtering is disabled return all items
       if (this.filter === undefined) {
         return (this.itemList = this.tableDetails.items);
       }
 
+      // Checks if there are selected filters then filters the table accordingly
       this.filterOptions.map((filter) => {
         currentFilter = filter.category;
         if (filter.filteredItems.length > 0) {
@@ -312,6 +319,7 @@ export default {
     },
 
     redirect: function (row) {
+      // Redirect function when row click is enabled. Will redirect to specified route name
       if (this.tableDetails.withRedirect === undefined) {
         return null;
       }
@@ -324,14 +332,14 @@ export default {
   },
 
   computed: {
-    tableItems() {
-      if (this.itemList.length === 0) {
-        return this.tableDetails.items;
-      }
-      return this.itemList;
-    },
+    // tableItems() {
+    //   if (this.itemList.length === 0) {
+    //     return this.tableDetails.items;
+    //   }
+    //   return this.itemList;
+    // },
 
-    // Returns the options or items to choose from when filtering table items
+    // Returns the options/items/filters to choose from when filtering table items
     filterOptions() {
       if (this.filter === undefined) {
         return [];
