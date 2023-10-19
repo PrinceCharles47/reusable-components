@@ -8,6 +8,7 @@ import TabsView from '../views/TabsView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import CardView from '../views/CardView.vue'
 import CalendarView from '../views/CalendarView.vue'
+import APITest from '../components/APITest.vue'
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,11 @@ const routes = [
     name: 'calendar',
     component: CalendarView
   },
+  {
+    path: '/test',
+    name: 'test',
+    component: APITest,
+  }
 ]
 
 const router = new VueRouter({
