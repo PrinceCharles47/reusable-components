@@ -121,7 +121,6 @@
       <v-data-table
         :headers="tableDetails.headers"
         :items="itemList"
-        items-per-page="5"
         :search="searchItem"
         class="mt-4"
         @click:row="redirect"
@@ -226,7 +225,7 @@ export default {
 
   data: () => ({
     alert: {
-      message: "No items found.",
+      message: "No items found. Displaying all data.",
       timeout: 3000,
       isAlert: false,
       type: "error",
@@ -261,6 +260,7 @@ export default {
       let oldTableItems = this.tableDetails.items;
       let currentFilter = null;
       let previousFilter = null;
+      let isFilterEmpty = true;
 
       if (this.filter === undefined) {
         return (this.itemList = this.tableDetails.items);
@@ -286,14 +286,25 @@ export default {
 
           oldTableItems = newTableItems;
         }
+      });
 
+      this.filterOptions.forEach((option) => {
+        if (option.filteredItems.length !== 0) {
+          isFilterEmpty = false;
+        }
+      });
+
+      if (isFilterEmpty) {
+        return (this.itemList = this.tableDetails.items);
+      } else {
         if (newTableItems.length <= 0) {
           this.alert.isAlert = true;
-          this.chipNames = [];
-          return (this.itemList = this.tableDetails.items);
+          // this.chipNames = [];
+          // return (this.itemList = this.tableDetails.items);
         }
+
         return (this.itemList = newTableItems);
-      });
+      }
     },
 
     getChipItems: function (item) {
