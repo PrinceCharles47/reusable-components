@@ -146,7 +146,9 @@
         <v-text-field label="Neck (CM)" v-model="data.neck"></v-text-field>
         <v-text-field label="Waist (CM)" v-model="data.waist"></v-text-field>
         <v-text-field label="Hip (CM)" v-model="data.hip"></v-text-field>
-        <v-btn dark class="purple" @click="submitForBodyFatPercentage">Submit</v-btn>
+        <v-btn dark class="purple" @click="submitForBodyFatPercentage"
+          >Submit</v-btn
+        >
       </v-col>
       <v-col cols="6">
         <div class="">
@@ -168,6 +170,100 @@
         <div class="">
           Data:
           {{ getIdealWeight ? getIdealWeight : "Not Available" }}
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <h1>ExercisesDB</h1>
+      </v-col>
+      <v-col cols="6">
+        <v-select
+          :items="selects.muscles"
+          label="Target Muscle"
+          v-model="exercisesDB.target"
+        ></v-select>
+        <v-btn dark class="purple" @click="submitForTargetMuscles"
+          >Submit</v-btn
+        >
+      </v-col>
+      <v-col>
+        <div class="">
+          Data:
+          {{
+            getExercisesByTargetMuscle
+              ? getExercisesByTargetMuscle
+              : "Not Available"
+          }}
+        </div>
+      </v-col>
+      <v-col cols="6">
+        <v-select
+          :items="selects.body_parts"
+          label="Target Body Part"
+          v-model="exercisesDB.body_part"
+        ></v-select>
+        <v-btn dark class="purple" @click="submitForBodyPart">Submit</v-btn>
+      </v-col>
+      <v-col>
+        <div class="">
+          Data:
+          {{
+            getExercisesByBodyPart ? getExercisesByBodyPart : "Not Available"
+          }}
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <h1>COVID 19 DataFlow</h1>
+      </v-col>
+      <v-col cols="6">
+        <v-btn dark class="purple" @click="fetchResultsCountries">Fetch</v-btn>
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getResultsCountries ? getResultsCountries : "Not Available" }}
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <h1>Medical Articles Live</h1>
+      </v-col>
+      <v-col cols="6">
+        <v-btn dark class="purple" @click="fetchAllMedicalJournals"
+          >Fetch</v-btn
+        >
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getMedicalJournals ? getMedicalJournals : "Not Available" }}
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <h1>Food Nutritional Value</h1>
+      </v-col>
+      <v-col cols="6">
+        <v-text-field
+          label="Enter Food"
+          v-model="food.food_type"
+        ></v-text-field>
+        <v-btn
+          dark
+          class="purple"
+          @click="fetchFoodNutritionalValue(food.food_type)"
+          >Submit</v-btn
+        >
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getNutritionalValue ? getNutritionalValue : "Not Available" }}
         </div>
       </v-col>
     </v-row>
@@ -196,6 +292,13 @@ export default {
       neck: null,
       hip: null,
     },
+    exercisesDB: {
+      target: null,
+      body_part: null,
+    },
+    food: {
+      food_type: null,
+    },
     selects: {
       activity_levels: [
         "level_1",
@@ -206,6 +309,39 @@ export default {
         "level_6",
       ],
       genders: ["male", "female"],
+      muscles: [
+        "abductors",
+        "abs",
+        "adductors",
+        "biceps",
+        "calves",
+        "cardiovascular system",
+        "delts",
+        "forearms",
+        "glutes",
+        "hamstrings",
+        "lats",
+        "levator scapulae",
+        "pectorals",
+        "quads",
+        "serratus anterior",
+        "spine",
+        "traps",
+        "triceps",
+        "upper back",
+      ],
+      body_parts: [
+        "back",
+        "cardio",
+        "chest",
+        "lower arms",
+        "lower legs",
+        "neck",
+        "shoulders",
+        "upper arms",
+        "upper legs",
+        "waist",
+      ],
     },
   }),
   methods: {
@@ -222,6 +358,13 @@ export default {
       "fetchBodyFatPercentage",
       "fetchIdealWeight",
     ]),
+    ...mapActions("ExerciseDB", [
+      "fetchExercisesByTargetMuscle",
+      "fetchExercisesByBodyPart",
+    ]),
+    ...mapActions("COVIDDataFlow", ["fetchResultsCountries"]),
+    ...mapActions("MedicalArticlesLive", ["fetchAllMedicalJournals"]),
+    ...mapActions("FoodNutritionalData", ["fetchFoodNutritionalValue"]),
     submitSymptoms() {
       this.fetchSymptomsData(this.symptoms);
     },
@@ -254,7 +397,13 @@ export default {
     },
     submitForIdealWeight() {
       this.fetchIdealWeight(this.data);
-    }
+    },
+    submitForTargetMuscles() {
+      this.fetchExercisesByTargetMuscle(this.exercisesDB.target);
+    },
+    submitForBodyPart() {
+      this.fetchExercisesByBodyPart(this.exercisesDB.body_part);
+    },
   },
   computed: {
     ...mapGetters("SymptomChecker", ["getSymptomsData"]),
@@ -270,6 +419,13 @@ export default {
       "getBodyFatPercentage",
       "getIdealWeight",
     ]),
+    ...mapGetters("ExerciseDB", [
+      "getExercisesByTargetMuscle",
+      "getExercisesByBodyPart",
+    ]),
+    ...mapGetters("COVIDDataFlow", ["getResultsCountries"]),
+    ...mapGetters("MedicalArticlesLive", ["getMedicalJournals"]),
+    ...mapGetters("FoodNutritionalData", ["getNutritionalValue"]),
   },
   watch: {
     getSymptomsData(value) {
@@ -301,7 +457,7 @@ export default {
     },
     getIdealWeight(value) {
       console.log("Ideal Weight: ", value);
-    }
+    },
   },
 };
 </script>

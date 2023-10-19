@@ -18,6 +18,7 @@ const rapidAPI = {
   apiHostDrugInformation: process.env.VUE_APP_RAPID_API_HOST_DRUG_INFORMATION,
   apiHostCOVID_19: process.env.VUE_APP_RAPID_API_HOST_COVID_19,
   apiHostExerciseDB: process.env.VUE_APP_RAPID_API_HOST_EXERCISEDB,
+  apiHostMedicalArticlesLive: process.env.VUE_APP_RAPID_API_HOST_MEDICAL_ARTICLES_LIVE,
 };
 
 const axiosInstanceFitnessCollector = axios.create({
@@ -52,10 +53,19 @@ const axiosInstanceExerciseDB = axios.create({
   },
 });
 
+const axiosInstanceMedicalArticlesLive = axios.create({
+  baseURL: "https://medical-articles-live.p.rapidapi.com",
+  headers: {
+    "X-RapidAPI-Key": rapidAPI.apiKey,
+    "X-RapidAPI-Host": rapidAPI.apiHostMedicalArticlesLive,
+  },
+});
+
 Vuex.Store.prototype.$FitnessInstance = axiosInstanceFitnessCollector;
 Vuex.Store.prototype.$DrugInfoInstance = axiosInstanceDrugInformation;
 Vuex.Store.prototype.$COVIDInstance = axiosInstanceCOVID19;
 Vuex.Store.prototype.$ExerciseDBInstance = axiosInstanceExerciseDB;
+Vuex.Store.prototype.$MedArticlesInstance = axiosInstanceMedicalArticlesLive;
 
 new Vue({
   router,
