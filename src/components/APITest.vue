@@ -87,6 +87,90 @@
         </div>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col cols="12">
+        <h1>Fitness Calculator</h1>
+      </v-col>
+      <v-col cols="12">Daily Calory Requirements</v-col>
+      <v-col cols="6">
+        <v-text-field label="Age" v-model="data.age"></v-text-field>
+        <v-select
+          label="Gender"
+          :items="selects.genders"
+          v-model="data.gender"
+        ></v-select>
+        <v-text-field label="Height (CM)" v-model="data.height"></v-text-field>
+        <v-text-field label="Weight (KG)" v-model="data.weight"></v-text-field>
+        <v-select
+          label="Activity Level"
+          v-model="data.activity_level"
+          :items="selects.activity_levels"
+        ></v-select>
+        <v-btn dark class="purple" @click="submitForDailyCaloryReq"
+          >Submit</v-btn
+        >
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{
+            getDailyCaloryRequirements
+              ? getDailyCaloryRequirements
+              : "Not Available"
+          }}
+        </div>
+      </v-col>
+      <v-col cols="12">BMI</v-col>
+      <v-col cols="6">
+        <v-text-field label="Age" v-model="data.age"></v-text-field>
+        <v-text-field label="Height (CM)" v-model="data.height"></v-text-field>
+        <v-text-field label="Weight (KG)" v-model="data.weight"></v-text-field>
+        <v-btn dark class="purple" @click="submitForBMI">Submit</v-btn>
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getBMI ? getBMI : "Not Available" }}
+        </div>
+      </v-col>
+      <v-col cols="12">Body Fat Percentage</v-col>
+      <v-col cols="6">
+        <v-text-field label="Age" v-model="data.age"></v-text-field>
+        <v-select
+          label="Gender"
+          :items="selects.genders"
+          v-model="data.gender"
+        ></v-select>
+        <v-text-field label="Height (CM)" v-model="data.height"></v-text-field>
+        <v-text-field label="Weight (KG)" v-model="data.weight"></v-text-field>
+        <v-text-field label="Neck (CM)" v-model="data.neck"></v-text-field>
+        <v-text-field label="Waist (CM)" v-model="data.waist"></v-text-field>
+        <v-text-field label="Hip (CM)" v-model="data.hip"></v-text-field>
+        <v-btn dark class="purple" @click="submitForBodyFatPercentage">Submit</v-btn>
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getBodyFatPercentage ? getBodyFatPercentage : "Not Available" }}
+        </div>
+      </v-col>
+      <v-col cols="12">Ideal Weight</v-col>
+      <v-col cols="6">
+        <v-select
+          label="Gender"
+          :items="selects.genders"
+          v-model="data.gender"
+        ></v-select>
+        <v-text-field label="Height (CM)" v-model="data.height"></v-text-field>
+        <v-btn dark class="purple" @click="submitForIdealWeight">Submit</v-btn>
+      </v-col>
+      <v-col cols="6">
+        <div class="">
+          Data:
+          {{ getIdealWeight ? getIdealWeight : "Not Available" }}
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -102,6 +186,27 @@ export default {
     country_statistics: null,
     country_history: null,
     day: null,
+    data: {
+      age: null,
+      gender: null,
+      height: null,
+      weight: null,
+      activity_level: null,
+      waist: null,
+      neck: null,
+      hip: null,
+    },
+    selects: {
+      activity_levels: [
+        "level_1",
+        "level_2",
+        "level_3",
+        "level_4",
+        "level_5",
+        "level_6",
+      ],
+      genders: ["male", "female"],
+    },
   }),
   methods: {
     ...mapActions("SymptomChecker", ["fetchSymptomsData"]),
@@ -110,6 +215,12 @@ export default {
       "fetchCountries",
       "fetchCountryStatistics",
       "fetchCountryHistory",
+    ]),
+    ...mapActions("FitnessCalculator", [
+      "fetchDailyCaloryRequirements",
+      "fetchBMI",
+      "fetchBodyFatPercentage",
+      "fetchIdealWeight",
     ]),
     submitSymptoms() {
       this.fetchSymptomsData(this.symptoms);
@@ -132,6 +243,18 @@ export default {
         day: this.day,
       });
     },
+    submitForDailyCaloryReq() {
+      this.fetchDailyCaloryRequirements(this.data);
+    },
+    submitForBMI() {
+      this.fetchBMI(this.data);
+    },
+    submitForBodyFatPercentage() {
+      this.fetchBodyFatPercentage(this.data);
+    },
+    submitForIdealWeight() {
+      this.fetchIdealWeight(this.data);
+    }
   },
   computed: {
     ...mapGetters("SymptomChecker", ["getSymptomsData"]),
@@ -140,6 +263,12 @@ export default {
       "getCountries",
       "getCountryStatistics",
       "getCountryHistory",
+    ]),
+    ...mapGetters("FitnessCalculator", [
+      "getDailyCaloryRequirements",
+      "getBMI",
+      "getBodyFatPercentage",
+      "getIdealWeight",
     ]),
   },
   watch: {
@@ -161,6 +290,18 @@ export default {
     getCountryHistory(value) {
       console.log("Country History", value);
     },
+    getDailyCaloryRequirements(value) {
+      console.log("Daily Calories Required", value);
+    },
+    getBMI(value) {
+      console.log("BMI: ", value);
+    },
+    getBodyFatPercentage(value) {
+      console.log("Body Fat Percentage: ", value);
+    },
+    getIdealWeight(value) {
+      console.log("Ideal Weight: ", value);
+    }
   },
 };
 </script>
